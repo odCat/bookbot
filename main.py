@@ -1,9 +1,16 @@
 def main():
     book_path = 'books/frankenstein.txt'
+    content = get_content(book_path)
+    word_count = count_words(content)
+    print_report(book_path, word_count, count_letters(content))
+
+
+def get_content(book_path):
     with open(book_path) as book:
-        content = book.read()
-        words = content.split()
-        print_report(book_path, len(words), count_letters(content))
+        return book.read()
+
+def count_words(text):
+    return len(text.split())
 
 
 def count_letters(text):

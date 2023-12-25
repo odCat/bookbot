@@ -1,3 +1,11 @@
+def main():
+    book_path = 'books/frankenstein.txt'
+    with open(book_path) as book:
+        content = book.read()
+        words = content.split()
+        print_report(book_path, len(words), count_letters(content))
+
+
 def count_letters(text):
     result = {}
     for letter in text.lower():
@@ -21,14 +29,6 @@ def print_report(book_file, word_count, letter_occur):
                 print(f"The '{letter}' character was found {letter_occur[letter]} times")
     
     print('\n--- End report ---')
-
-
-def main():
-    with open('books/frankenstein.txt') as book:
-        content = book.read()
-        words = content.split()
-        # letters = list(count_letters(content)).sort()
-        print_report('books/frankenstein.txt', len(words), count_letters(content))
 
 
 main()

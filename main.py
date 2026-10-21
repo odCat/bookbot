@@ -1,3 +1,6 @@
+from stats import count_words, count_letters
+
+
 def main():
     book_path = 'books/frankenstein.txt'
     content = get_content(book_path)
@@ -9,24 +12,10 @@ def get_content(book_path):
     with open(book_path) as book:
         return book.read()
 
-def count_words(text):
-    return len(text.split())
-
-
-def count_letters(text):
-    result = {}
-    for letter in text.lower():
-        if letter.isalpha():
-            if letter not in result:
-                result[letter] = 1
-            else:
-                result[letter] += 1
-    return result
-
 
 def print_report(book_file, word_count, letter_occur):
     print(f'--- Begin report of {book_file} ---')
-    print(f'{word_count} words found in the documment\n')
+    print(f'Found {word_count} total words\n')
 
     ordered = [x for x in letter_occur.values()]
     ordered.sort(reverse=True)

@@ -1,4 +1,4 @@
-from stats import count_words, count_letters
+from stats import count_words, count_letters, chars_dict_to_sorted_list
 
 
 def main():
@@ -13,17 +13,19 @@ def get_content(book_path):
         return book.read()
 
 
-def print_report(book_file, word_count, letter_occur):
-    print(f'--- Begin report of {book_file} ---')
-    print(f'Found {word_count} total words\n')
+def print_report(book_file: str, word_count: int, letter_occur: dict[str, int]) -> None:
+    print("============ BOOKBOT ============")
+    print(f'Analyzing book found at {book_file}...')
 
-    ordered = [x for x in letter_occur.values()]
-    ordered.sort(reverse=True)
-    for occur in ordered:
-        for letter in letter_occur:
-            if letter_occur[letter] == occur:
-                print(f"The '{letter}' character was found {letter_occur[letter]} times")
-    
+    print("----------- Word Count ----------")
+    print(f'Found {word_count} total words')
+
+    print("--------- Character Count -------")
+    ordered = chars_dict_to_sorted_list(letter_occur)
+    for key_value in ordered:
+        if key_value[0].isalpha():
+            print(f"{key_value[0]}: {key_value[1]}")
+
     print('\n--- End report ---')
 
 

@@ -15,7 +15,7 @@ def main():
 
 
 def get_content(book_path):
-    with open(book_path) as book:
+    with open(book_path, encoding="utf-8-sig") as book:
         return book.read()
 
 
@@ -30,7 +30,8 @@ def print_report(book_file: str, word_count: int, letter_occur: dict[str, int]) 
     ordered = chars_dict_to_sorted_list(letter_occur)
     for key_value in ordered:
         if key_value[0].isalpha():
-            print(f"{key_value[0]}: {key_value[1]}")
+            ch = key_value[0] if unicodedata.bidirectional(key_value[0]) not in ("R", "AL", "AN") else ascii(key_value[0])
+            print(f"{ch}: {key_value[1]}")
 
     print('\n--- End report ---')
 

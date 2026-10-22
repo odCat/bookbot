@@ -1,8 +1,14 @@
+import sys
+import unicodedata
 from stats import count_words, count_letters, chars_dict_to_sorted_list
 
 
 def main():
-    book_path = 'books/frankenstein.txt'
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book_path = sys.argv[1]
     content = get_content(book_path)
     word_count = count_words(content)
     print_report(book_path, word_count, count_letters(content))

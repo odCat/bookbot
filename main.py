@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import sys
 import unicodedata
 from stats import count_words, count_letters, chars_dict_to_sorted_list
@@ -14,7 +16,7 @@ def main():
     print_report(book_path, word_count, count_letters(content))
 
 
-def get_content(book_path):
+def get_content(book_path: str):
     with open(book_path, encoding="utf-8-sig") as book:
         return book.read()
 
